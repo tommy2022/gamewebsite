@@ -1,0 +1,62 @@
+body {
+  z-index: 1;
+  background: #202028;
+  color: #fff;
+  font-family: sans-serif, Arial;
+  font-size: 3.5vh;
+  text-align: center;
+}
+
+p {
+  font-size: 2vh;
+}
+
+canvas {
+  border: solid .1em #fff;
+  height: 90vh;
+}
+
+.result {
+  display: none;
+  z-index: 2;
+  font-size: 3.2vh;
+  width: 50vh;
+	height: 50vh;
+
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+#instructions {
+  border: solid .1em #fff;
+  width: 20vw;
+  height: 60vh;
+  background-color: black;
+  z-index: 2;
+  position: absolute;
+  top: 15%;
+  left: 13%;
+}
+
+#next {
+  position: absolute;
+  margin-left: 2%;
+  height: 15vh;
+  z-index: 2;
+}
+
+#gameover {
+  font-family:Courier, sans-serif, Arial;
+  font-size: 1.6em;
+  color: red;
+}
+
+#scoreResult {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 1.2em;
+  color: #0037ff;
+}
