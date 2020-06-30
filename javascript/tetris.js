@@ -187,7 +187,18 @@ function dropHard() {
 }
 
 function nextBlock() {
+  debugger;
   player.currMatrix++;
+  let pos = player.pos.x;
+  let offset = 0;
+  while (collide(arena, player)) {
+    player.pos.x += (++offset % 2 == 1 ? offset : -offset);
+    if (offset > player.matrix[player.currMatrix % 2][0].length) {
+      player.currMatrix++;
+      player.pos.x = pos;
+      return;
+    }
+  }
   nextDraw();
 }
 
@@ -294,7 +305,6 @@ function rotate(matrix, dir) {
 }
 
 function update(time = 0) {
-  debugger;
   const deltaTime = time - lastTime;
   lastTime = time;
 
