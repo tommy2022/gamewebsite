@@ -143,6 +143,15 @@ class Tetris extends Game {
   nextBlock() {
     player.currMatrix++;
     this.nextDraw_helper();
+    let offset = 0;
+    while (this.collide()) {
+      this.player.pos.x += (++offset % 2 == 1 ? offset : -offset);
+      if (offset > this.player.matrix[this.player.currMatrix % 2][0].length) {
+        player.currMatrix++;
+        this.player.pos.x = pos;
+        return;
+      }
+    }
   }
 
   nextDraw_helper() {
