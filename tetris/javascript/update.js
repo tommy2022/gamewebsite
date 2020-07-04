@@ -92,5 +92,4 @@ $(window).keydown(function(e){
   } else if (e.keyCode == 13) {
     tetris.nextBlock();
   }
-
 });

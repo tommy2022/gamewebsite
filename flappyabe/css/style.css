@@ -1,23 +1,20 @@
 body {
   z-index: 1;
   font-family: sans-serif, Arial;
-  font-size: 2.5vh;
-  text-align: center;
-}
-
-p {
-  font-size: 2vh;
+  margin: 5% 10%;
 }
 
 canvas {
   border: solid .1em #000;
-  height: 90vh;
-  color: white;
+  height: 60vmin;
+  display: inline-block;;
+
+
 }
 
 .result {
   display: none;
-  z-index: 2;
+  z-index: 3;
   font-size: 3.2vh;
   width: 50vh;
 	height: 50vh;
@@ -30,31 +27,20 @@ canvas {
   transform: translate(-50%,-50%);
 }
 
-#instructions {
-  border: solid .1em #111;
-  width: 20vw;
-  height: 60vh;
-  z-index: 2;
-  position: absolute;
-  top: 15%;
-  left: 13%;
-}
+#canvas {
+  z-index: 1;
+  background: url("../image/kokkai.jpg");
+  background-size: 60vmin 60vmin;
+  background-color: rgba(255, 255, 255, 0.6);
 
-#next {
-  position: absolute;
-  margin-left: 2%;
-  height: 15vh;
-  z-index: 2;
+}
+#abe {
+  z-index: 1;
+  background: transparent;
 }
 
 #gameover {
   font-family:Courier, sans-serif, Arial;
   font-size: 1.6em;
   color: red;
-}
-
-#scoreResult {
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: 1.2em;
-  color: #0037ff;
 }

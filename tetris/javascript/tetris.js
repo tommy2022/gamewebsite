@@ -83,26 +83,13 @@ class Tetris extends Game {
   draw() {
     this.drawBlank();
 
-    this.drawMatrix(this.arena, {x: 0, y: 0});
-    this.drawMatrix(this.player.matrix[player.currMatrix % 2], this.player.pos);
+    super.drawMatrix(this.arena, {x: 0, y: 0});
+    super.drawMatrix(this.player.matrix[player.currMatrix % 2], this.player.pos);
   }
 
   drawBlank() {
     this.context.fillStyle = '#000';
     this.context.fillRect(0, 0, canvas.width, canvas.height);
-  }
-
-  drawMatrix(matrix, offset) {
-    matrix.forEach((row, y) => {
-      row.forEach((value, x) => {
-        if (value != 0) {
-          this.context.fillStyle = colors[value];
-          this.context.fillRect(x + offset.x,
-                            y + offset.y,
-                             1, 1);
-        }
-      });
-    });
   }
 
   draw_gameover() {
@@ -137,9 +124,6 @@ class Tetris extends Game {
     this.dropInfo.counter = 0;
   }
 
-  get_gameover() {
-    return this.gameover;
-  }
   nextBlock() {
     player.currMatrix++;
     this.nextDraw_helper();

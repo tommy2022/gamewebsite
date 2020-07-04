@@ -1,9 +1,9 @@
 class Game {
   constructor (context, width_in, height_in, player, scaler = 1) {
     this.context = context;
-    this.width = width_in;
-    this.height = height_in;
-    this.player = player;
+    this.width = width_in; //canvas width
+    this.height = height_in; //canvas height
+    this.player = player; //includes pos, matrix (of the player), score
     this.arena = this.createMatrix(this.width / scaler,
                                    this.height / scaler);
     this.dropInfo = {
@@ -41,8 +41,25 @@ class Game {
     return false;
   }
 
+  drawMatrix(matrix, init_pos) {
+    matrix.forEach((row, y) => {
+      row.forEach((value, x) => {
+        if (value != 0) {
+          this.context.fillStyle = colors[value];
+          this.context.fillRect(x + init_pos.x,
+                            y + init_pos.y,
+                             1, 1);
+        }
+      });
+    });
+  }
+
   dropPos() {
     this.player.pos.y++;
+  }
+
+  get_gameover() {
+    return this.gameover;
   }
 
   getScore() {
