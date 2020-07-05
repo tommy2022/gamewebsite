@@ -32,5 +32,11 @@ canvas {
   position: absolute;
   left: 75vmin;
   font-size: 2vmin;
-  padding: 2%
+  padding: 2%;
+  webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+
+  -o-user-select: none;
+  user-select: none;
 }
