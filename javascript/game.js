@@ -20,10 +20,10 @@ class Game {
     return (this.dropInfo.counter += deltaTime);
   }
 
-  createMatrix(w, h) {
+  createMatrix(w, h, num = 0) {
     const matrix = [];
     while (h--) {
-      matrix.push(new Array(w).fill(0));
+      matrix.push(new Array(w).fill(num));
     }
     return matrix;
   }

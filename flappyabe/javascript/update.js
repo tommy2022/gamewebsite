@@ -5,6 +5,8 @@ var abeCtx = abeCanvas.getContext("2d");
 let num_player;
 let started = null;
 
+
+
 const player = {
   pos: {x: 0, y: 0},
   matrix: null,
@@ -13,6 +15,9 @@ const player = {
 
 var p1;
 var p2;
+
+var building_imgs;
+
 const abe = {
   rise: new Image(),
   fall: new Image(),
@@ -21,15 +26,34 @@ const aso = {
   rise: new Image(),
   fall: new Image(),
 }
-abe.rise.src = "./image/abe_rise.jpg";
-abe.fall.src = "./image/abe_fall.jpg";
 
-aso.rise.src = "./image/aso_rise.jpg";
-aso.fall.src = "./image/aso_fall.jpg";
-aso.fall.onload = function() {
-  started = false;
-  menu_display();
-};
+get_images();
+
+
+function get_images() {
+  const building1 = new Image();
+  const building2 = new Image();
+  const building3 = new Image();
+  building1.src = "./image/building1.jpg";
+  building2.src = "./image/building2.jpg";
+  building3.src = "./image/building3.jpg";
+
+  building_imgs = [
+    building1,
+    building2,
+    building3,
+  ];
+
+  abe.rise.src = "./image/abe_rise.png";
+  abe.fall.src = "./image/abe_fall.png";
+
+  aso.rise.src = "./image/aso_rise.png";
+  aso.fall.src = "./image/aso_fall.png";
+  aso.fall.onload = function() {
+    started = false;
+    menu_display();
+  };
+}
 
 function get_coordinates(event) {
   const rect = canvas.getBoundingClientRect();
@@ -43,26 +67,31 @@ function menu_display() {
 $("#canvas").css("background-blend-mode:", "normal");
 
   ctx.fillStyle = "#000080";
-  ctx.fillRect(70, 430, 200, 130);
-  ctx.fillRect(340, 430, 200, 130);
+  ctx.fillRect(70, 430, 200, 80);
+  ctx.fillRect(340, 430, 200, 80);
 
   ctx.beginPath();
   ctx.lineWidth = "2";
   ctx.strokeStyle = "black";
-  ctx.rect(70, 430, 200, 130);
-  ctx.rect(340, 430, 200, 130);
+  ctx.rect(70, 430, 200, 80);
+  ctx.rect(340, 430, 200, 80);
   ctx.stroke();
 
   ctx.beginPath();
   ctx.lineWidth = "2";
   ctx.strokeStyle = "white";
-  ctx.rect(72, 432, 196, 126);
-  ctx.rect(342, 432, 196, 126);
+  ctx.rect(72, 432, 196, 76);
+  ctx.rect(342, 432, 196, 76);
   ctx.stroke();
 
   ctx.fillStyle = "white";
-  ctx.font = '2vmin "Courier New", Courier, monospace'
-  ctx.fillText("Hello World!", 76, 50)
+  ctx.font = 'bold 2.2vmin "Courier New", Courier, monospace'
+  ctx.fillText("Single player", 85, 470);
+  ctx.fillText("Double player", 360, 470);
+
+  ctx.drawImage(abe.fall, 130, 360, 70, 70);
+  ctx.drawImage(abe.fall, 440, 360, 70, 70);
+  ctx.drawImage(aso.fall, 370, 360, 70, 70);
 }
 
 function get_menu_option(x, y) {
@@ -83,7 +112,7 @@ function gameover_screen() {
 
 function startgame() {
   $("#canvas").css("background-blend-mode", "lighten");
-  flappyabe = new FlappyAbe(ctx, canvas.width, canvas.height, player, abeCtx, num_player, abe, aso);
+  flappyabe = new FlappyAbe(ctx, canvas.width, canvas.height, player, abeCtx, num_player, abe, aso, building_imgs);
   started = true;
   update();
 }
@@ -109,7 +138,11 @@ $(document).on('click', function(e) {
   }
 })
 
+var down = false;
+
 $(window).keydown(function(e){
+  if (down) return;
+  down = true;
   if (e.keyCode == 32) {
     if (!flappyabe.get_gameover()) {
       flappyabe.jump(2);
@@ -135,4 +168,7 @@ $(window).keydown(function(e){
   } else if (e.keyCode == 27) {
     menu_display();
   }
+});
+$(window).keyup(function(e) {
+  down=false;
 });
