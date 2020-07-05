@@ -9,13 +9,20 @@
   <canvas id="canvas" width="600" height="600"></canvas>
   <canvas id="abe" width="600" height="600"></canvas>
 
-
-  <div class="result">
-    <span id="gameover">GAME OVER</span>
-    <br /><br />
-    <span id="scoreResult"></span>
-    <br /> <br /><br />
-    <span> Press space to start again</span>
+  <div id="instructions">
+    <h3> Game Controls</h3>
+    <section>
+      <h4> Single player</h4>
+      <p><span style="font-weight: bold">Jump</span> - w, space, up-arrow, <br /> enter, mouse right-click </p>
+    </section>
+    <hr />
+    <section>
+      <h4> Double player</h4>
+      <p><span style="font-weight: bold">P1 (Abe) Jump</span> - up-arrow, enter, mouse right-click </p>
+      <p><span style="font-weight: bold">P1 (Abe) Jump</span> - w, space </p>
+    </section>
+    <hr />
+    <p><span style="font-weight: bold">Return to main menu</span> - Esc</p>
   </div>
 
   <script src="../javascript/game.js"></script>

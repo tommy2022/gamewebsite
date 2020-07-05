@@ -7,24 +7,8 @@ body {
 canvas {
   border: solid .1em #000;
   height: 60vmin;
-  display: inline-block;;
-
-
-}
-
-.result {
-  display: none;
-  z-index: 3;
-  font-size: 3.2vh;
-  width: 50vh;
-	height: 50vh;
-
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  display: inline-block;
+  left:10vmin;
 }
 
 #canvas {
@@ -32,15 +16,21 @@ canvas {
   background: url("../image/kokkai.jpg");
   background-size: 60vmin 60vmin;
   background-color: rgba(255, 255, 255, 0.6);
-
+  position: absolute;
 }
 #abe {
-  z-index: 1;
+  z-index: 2;
   background: transparent;
+  position: absolute;
 }
 
-#gameover {
-  font-family:Courier, sans-serif, Arial;
-  font-size: 1.6em;
-  color: red;
+#instructions {
+  border: solid .1em #000000;
+  width: 30vmin;
+  height: 50vmin;
+  position: absolute;
+  position: absolute;
+  left: 75vmin;
+  font-size: 2vmin;
+  padding: 2%
 }

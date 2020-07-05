@@ -13,30 +13,43 @@ const player = {
   score: 0,
 }
 
-var p1;
-var p2;
-
 var building_imgs;
 
 const abe = {
   rise: new Image(),
   fall: new Image(),
+  x_pos: 200,
+  dim: 50,
 }
 const aso = {
   rise: new Image(),
   fall: new Image(),
+  x_pos: 125,
+  dim: 50,
 }
 
 get_images();
 
 
 function get_images() {
-  const building1 = new Image();
-  const building2 = new Image();
-  const building3 = new Image();
-  building1.src = "./image/building1.jpg";
-  building2.src = "./image/building2.jpg";
-  building3.src = "./image/building3.jpg";
+  const building1 = {
+    short: new Image(),
+    medium: new Image(),
+    long: new Image(),
+  }
+  const building2 = {
+    short: new Image(),
+    medium: new Image(),
+    long: new Image(),
+  }
+  const building3 = {
+    short: new Image(),
+    medium: new Image(),
+    long: new Image(),
+  }
+  setImages(building1, "building1");
+  setImages(building2, "building2");
+  setImages(building3, "building3");
 
   building_imgs = [
     building1,
@@ -55,16 +68,22 @@ function get_images() {
   };
 }
 
+function setImages(building, name) {
+  building.short.src = "./image/" + name + "/short.jpg";
+  building.medium.src = "./image/" + name + "/medium.jpg";
+  building.long.src = "./image/" + name + "/medium.jpg";
+}
+
 function get_coordinates(event) {
   const rect = canvas.getBoundingClientRect();
   const x = (event.clientX - rect.left) / canvas.clientWidth * canvas.width;
   const y = (event.clientY - rect.top) / canvas.clientHeight * canvas.height;
-  console.log(x, y);
   get_menu_option(x, y);
 }
 
 function menu_display() {
-$("#canvas").css("background-blend-mode:", "normal");
+  player.score = 0;
+  started = false;
 
   ctx.fillStyle = "#000080";
   ctx.fillRect(70, 430, 200, 80);
@@ -85,7 +104,7 @@ $("#canvas").css("background-blend-mode:", "normal");
   ctx.stroke();
 
   ctx.fillStyle = "white";
-  ctx.font = 'bold 2.2vmin "Courier New", Courier, monospace'
+  ctx.font = 'bold 2.2vmin "Courier New", Courier, monospace';
   ctx.fillText("Single player", 85, 470);
   ctx.fillText("Double player", 360, 470);
 
@@ -96,19 +115,27 @@ $("#canvas").css("background-blend-mode:", "normal");
 
 function get_menu_option(x, y) {
   //single player
-  if ((x < 270 && x > 70) && (y > 430 && y < 560)) {
+  if ((x < 270 && x > 70) && (y > 430 && y < 510)) {
     num_player = 1;
     startgame();
   }
-  else if ((x > 340 && x < 540) && (y > 430 && y < 560)) {
+  else if ((x > 340 && x < 540) && (y > 430 && y < 510)) {
     num_player = 2;
     startgame();
   }
 }
 
 function gameover_screen() {
-  started = false;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  abeCtx.clearRect(0, 0, abeCanvas.width, abeCanvas.height);
+  $("#canvas").css("background-blend-mode", "normal");
+  const score = "Your score: " + flappyabe.getScore();
+  ctx.fillStyle = "white";
+  ctx.font = 'bold 5vmin Arial';
+  ctx.fillText(score, 150, 100);
+  menu_display();
 }
+
 
 function startgame() {
   $("#canvas").css("background-blend-mode", "lighten");
@@ -151,22 +178,13 @@ $(window).keydown(function(e){
       startgame();
     }
   } else if (e.keyCode == 87 && !flappyabe.get_gameover()) {
-      if (!flappyabe.get_gameover()) {
-        flappyabe.jump(2);
-      }
-  } else if (e.keyCode == 38) {
-      if (!flappyabe.get_gameover()) {
-        flappyabe.jump(1);
-      }
-  } else if (e.keyCode == 13) {
-      if (!flappyabe.get_gameover()) {
-        flappyabe.jump(1);
-      }
-      else {
-        menu_display();
-      }
+      flappyabe.jump(2);
+  } else if (e.keyCode == 38 && !flappyabe.get_gameover()) {
+    flappyabe.jump(1);
+  } else if (e.keyCode == 13  && !flappyabe.get_gameover()) {
+      flappyabe.jump(1);
   } else if (e.keyCode == 27) {
-    menu_display();
+    flappyabe.set_gameover();
   }
 });
 $(window).keyup(function(e) {

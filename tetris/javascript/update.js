@@ -54,6 +54,7 @@ start();
 function start() {
   $(".result").css("display", "none");
   $("#currscore").css("visibility", "visible");
+  player.score = 0;
   tetris = new Tetris(player, colors, ctx, dim_main, nextCtx, dim_next, nextShifter);
   update();
 }
