@@ -58,7 +58,7 @@ function get_images() {
   ];
 
   abe.rise.src = "./image/abe_rise.png";
-  abe.fall.src = "./image/abe_fall.png";
+  abe.fall.src = "./image/abe_fall.gif";
 
   aso.rise.src = "./image/aso_rise.png";
   aso.fall.src = "./image/aso_fall.png";
