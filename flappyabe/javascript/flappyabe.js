@@ -20,7 +20,7 @@ class FlappyAbe extends Game {
     this.prevScore = this.player.score;
     this.frontContext.clearRect(250, 0, this.canvas_width, this.canvas_width);
     this.frontContext.fillStyle = "black";
-    this.frontContext.font = "bold 4vmin Arial";
+    this.frontContext.font = "bold 6vmin Arial";
     this.frontContext.fillText(this.player.score, 300, 100);
   }
 

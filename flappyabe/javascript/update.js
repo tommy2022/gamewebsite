@@ -104,7 +104,7 @@ function menu_display() {
   ctx.stroke();
 
   ctx.fillStyle = "white";
-  ctx.font = 'bold 2.2vmin "Courier New", Courier, monospace';
+  ctx.font = 'bold 3.5vmin "Courier New", Courier, monospace';
   ctx.fillText("Single player", 85, 470);
   ctx.fillText("Double player", 360, 470);
 
@@ -131,8 +131,8 @@ function gameover_screen() {
   $("#canvas").css("background-blend-mode", "normal");
   const score = "Your score: " + flappyabe.getScore();
   ctx.fillStyle = "white";
-  ctx.font = 'bold 5vmin Arial';
-  ctx.fillText(score, 150, 100);
+  ctx.font = 'bold 7vmin Arial';
+  ctx.fillText(score, 160 , 100);
   menu_display();
 }
 
@@ -170,23 +170,22 @@ var down = false;
 $(window).keydown(function(e){
   if (down) return;
   down = true;
-  if (e.keyCode == 32) {
-    if (!flappyabe.get_gameover()) {
-      flappyabe.jump(2);
-    }
-    else {
-      startgame();
-    }
-  } else if (e.keyCode == 87 && !flappyabe.get_gameover()) {
-      flappyabe.jump(2);
-  } else if (e.keyCode == 38 && !flappyabe.get_gameover()) {
-    flappyabe.jump(1);
-  } else if (e.keyCode == 13  && !flappyabe.get_gameover()) {
-      flappyabe.jump(1);
-  } else if (e.keyCode == 27) {
+  if (e.keyCode == 27) {
     flappyabe.set_gameover();
   }
+  if (!flappyabe.get_gameover()) {
+    if (e.keyCode == 32) {
+        flappyabe.jump(2);
+    } else if (e.keyCode == 87) {
+        flappyabe.jump(2);
+    } else if (e.keyCode == 38) {
+      flappyabe.jump(1);
+    } else if (e.keyCode == 13) {
+        flappyabe.jump(1);
+    }
+  }
 });
+
 $(window).keyup(function(e) {
   down=false;
 });
