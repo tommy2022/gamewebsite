@@ -6,7 +6,7 @@ body {
 
 canvas {
   border: solid .1em #000;
-  height: 60vmin;
+  height: 80vmin;
   display: inline-block;
   left:10vmin;
 }
@@ -14,7 +14,7 @@ canvas {
 #canvas {
   z-index: 1;
   background: url("../image/kokkai.jpg");
-  background-size: 60vmin 60vmin;
+  background-size: 80vmin 80vmin;
   background-color: rgba(255, 255, 255, 0.6);
   position: absolute;
 }
@@ -30,7 +30,7 @@ canvas {
   height: 50vmin;
   position: absolute;
   position: absolute;
-  left: 75vmin;
+  left: 95vmin;
   font-size: 2vmin;
   padding: 2%;
   webkit-user-select: none; /* Chrome/Safari */
