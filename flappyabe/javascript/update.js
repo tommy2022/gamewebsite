@@ -57,11 +57,11 @@ function get_images() {
     building3,
   ];
 
-  abe.rise.src = "./image/abe_rise.gif";
-  abe.fall.src = "./image/abe_fall.gif";
+  abe.rise.src = "./image/abe_rise.png";
+  abe.fall.src = "./image/abe_fall.png";
 
-  aso.rise.src = "./image/aso_rise.gif";
-  aso.fall.src = "./image/aso_fall.gif";
+  aso.rise.src = "./image/aso_rise.png";
+  aso.fall.src = "./image/aso_fall.png";
   aso.fall.onload = function() {
     started = false;
     menu_display();
