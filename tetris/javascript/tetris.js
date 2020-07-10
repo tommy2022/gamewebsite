@@ -83,13 +83,27 @@ class Tetris extends Game {
   draw() {
     this.drawBlank();
 
-    super.drawMatrix(this.arena, {x: 0, y: 0});
-    super.drawMatrix(this.player.matrix[player.currMatrix % 2], this.player.pos);
+    this.drawMatrix(this.arena, {x: 0, y: 0});
+    this.drawMatrix(this.player.matrix[player.currMatrix % 2], this.player.pos);
+    this.showShadow();
   }
 
   drawBlank() {
     this.context.fillStyle = '#000';
     this.context.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  drawMatrix(matrix, init_pos, color) {
+    matrix.forEach((row, y) => {
+      row.forEach((value, x) => {
+        if (value != 0) {
+          this.context.fillStyle = this.colors[value];
+          this.context.fillRect(x + init_pos.x,
+                            y + init_pos.y,
+                             1, 1);
+        }
+      });
+    });
   }
 
   draw_gameover() {
@@ -199,6 +213,21 @@ class Tetris extends Game {
     else {
       matrix.reverse();
     }
+  }
+
+  showShadow() {
+    const y_pos = this.player.pos.y;
+    this.player.pos.y++;
+    if (this.collide()) {
+      this.player.pos.y--;
+      return;
+    }
+    while (!this.collide()) {
+      this.player.pos.y++;
+    }
+    this.player.pos.y--;
+    super.drawMatrix(this.player.matrix[player.currMatrix % 2], this.player.pos, "rgba(220, 220, 220, 0.5)");
+    this.player.pos.y = y_pos;
   }
 
   update_frame(time) {

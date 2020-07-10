@@ -163,7 +163,7 @@ $(document).on('click', function(e) {
   else {
     flappyabe.jump(1);
   }
-})
+});
 
 var down = false;
 

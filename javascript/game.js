@@ -41,11 +41,11 @@ class Game {
     return false;
   }
 
-  drawMatrix(matrix, init_pos) {
+  drawMatrix(matrix, init_pos, color) {
     matrix.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value != 0) {
-          this.context.fillStyle = colors[value];
+          this.context.fillStyle = color;
           this.context.fillRect(x + init_pos.x,
                             y + init_pos.y,
                              1, 1);
