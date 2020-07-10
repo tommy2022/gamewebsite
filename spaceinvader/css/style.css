@@ -1,0 +1,9 @@
+canvas {
+    border: solid .1em black;
+    width: 50vmin;
+    /*position: absolute;*/
+}
+
+#fore {
+    margin-top: 5.56vmin;
+}

@@ -75,6 +75,21 @@ class Game {
       });
     });
   }
+  
+    playerMove(dir, val) {
+    if (dir == "x") {
+      this.player.pos.x += val;
+      if (this.collide()) {
+        this.player.pos.x -= val;
+      }
+    }
+    else {
+      this.player.pos.y += val;
+      if (this.collide()) {
+        this.player.pos.y -= val;
+      }
+    }
+  }
 
   set_gameover() {
     this.gameover = true;

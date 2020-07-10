@@ -23,6 +23,7 @@ class Tetris extends Game {
       this.arena.unshift(row);
       y++;
       this.player.score += rowCount * 10;
+      if(this.dropInfo.interval > 500)
       this.dropInfo.interval -= 10;
       this.updateScore();
       rowCount *= 2;
@@ -156,11 +157,8 @@ class Tetris extends Game {
     this.next.draw(this.player.matrix[(this.player.currMatrix + 1) % 2]);
   }
 
-  playerMove(dir) {
-    this.player.pos.x += dir;
-    if (this.collide()) {
-      this.player.pos.x -= dir;
-    }
+  playerMove(val) {
+    super.playerMove("x", val);
   }
 
   playerReset() {
