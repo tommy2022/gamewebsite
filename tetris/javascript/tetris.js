@@ -1,7 +1,7 @@
 class Tetris extends Game {
   constructor (player_in, colors_in, context, dim_main, next, dim_next, shifter) {
     super(context, dim_main.width, dim_main.height, player_in, dim_main.scaler);
-    this.next = new NextTetris(next, dim_next, shifter);
+    this.next = new NextTetris(next, dim_next, shifter, colors_in);
 
     this.colors = colors_in;
 
@@ -82,7 +82,7 @@ class Tetris extends Game {
   }
 
   collide() {
-    const [obj, pos] = [this.player.matrix[player.currMatrix % 2], this.player.pos];
+    const [obj, pos] = [this.player.matrix[this.player.currMatrix % 2], this.player.pos];
     return super.collide(obj, pos);
   }
 
@@ -90,13 +90,13 @@ class Tetris extends Game {
     this.drawBlank();
 
     this.drawMatrix(this.arena, {x: 0, y: 0});
-    this.drawMatrix(this.player.matrix[player.currMatrix % 2], this.player.pos);
+    this.drawMatrix(this.player.matrix[this.player.currMatrix % 2], this.player.pos);
     this.showShadow();
   }
 
   drawBlank() {
     this.context.fillStyle = '#000';
-    this.context.fillRect(0, 0, canvas.width, canvas.height);
+    this.context.fillRect(0, 0, this.width, this.height);
   }
 
   drawMatrix(matrix, init_pos, color) {
@@ -122,7 +122,7 @@ class Tetris extends Game {
 
   dropAdjust() {
     this.player.pos.y--;
-    super.merge(player.matrix[player.currMatrix % 2]);
+    super.merge(this.player.matrix[this.player.currMatrix % 2]);
     this.player.pos.y = 0;
     this.playerReset();
     this.arenaSweep();
@@ -145,13 +145,14 @@ class Tetris extends Game {
   }
 
   nextBlock() {
-    player.currMatrix++;
+    const pos = this.player.pos.x;
+    this.player.currMatrix++;
     this.nextDraw_helper();
     let offset = 0;
     while (this.collide()) {
       this.player.pos.x += (++offset % 2 == 1 ? offset : -offset);
       if (offset > this.player.matrix[this.player.currMatrix % 2][0].length) {
-        player.currMatrix++;
+        this.player.currMatrix++;
         this.player.pos.x = pos;
         return;
       }
@@ -229,7 +230,7 @@ class Tetris extends Game {
       this.player.pos.y++;
     }
     this.player.pos.y--;
-    super.drawMatrix(this.player.matrix[player.currMatrix % 2], this.player.pos, "rgba(220, 220, 220, 0.5)");
+    super.drawMatrix(this.player.matrix[this.player.currMatrix % 2], this.player.pos, "rgba(220, 220, 220, 0.5)");
     this.player.pos.y = y_pos;
   }
 
@@ -251,6 +252,7 @@ class NextTetris {
     this.shifter = shifter;
     this.width = dimension.width;
     this.height = dimension.height;
+    this.colors = colors;
   }
   blank() {
     this.context.fillStyle = '#000';
@@ -261,8 +263,8 @@ class NextTetris {
     nextBlock.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value != 0) {
-          this.context.fillStyle = colors[value];
-          this.context.fillRect(x + nextShifter[value].x, y +  nextShifter[value].y , 1, 1);
+          this.context.fillStyle = this.colors[value];
+          this.context.fillRect(x + this.shifter[value].x, y +  this.shifter[value].y , 1, 1);
         }
       });
     });

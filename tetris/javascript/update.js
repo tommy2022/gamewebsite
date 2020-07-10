@@ -7,13 +7,13 @@ const dim_main = {
   width: canvas.width,
   height: canvas.height,
   scaler: 20,
-}
+};
 
 const dim_next = {
   width: nextCanvas.width,
   height: nextCanvas.height,
   scaler: 30,
-}
+};
 
 ctx.scale(dim_main.scaler, dim_main.scaler);
 nextCtx.scale(dim_next.scaler, dim_next.scaler);
@@ -23,7 +23,7 @@ const player = {
   matrix: [[[]], [[]]],
   currMatrix: 0,
   score: 0,
-}
+};
 const dropInterval = 1000;
 
 const colors = [
@@ -35,7 +35,7 @@ const colors = [
   'aqua',
   'green',
   'red'
-]
+];
 const nextShifter = [
   null,
   {x: 2, y: 1},
@@ -45,7 +45,7 @@ const nextShifter = [
   {x: 2, y: 1},
   {x: 2, y: 2},
   {x: 2, y: 2},
-]
+];
 
 var tetris;
 
