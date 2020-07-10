@@ -5,6 +5,11 @@ class Tetris extends Game {
 
     this.colors = colors_in;
 
+    this.dropInfo = {
+      counter: 0,
+      interval: 1000,
+      lastTime: 0,
+    }
 
 
     this.updateScore();
