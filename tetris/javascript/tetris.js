@@ -5,6 +5,11 @@ class Tetris extends Game {
 
     this.colors = colors_in;
 
+    this.dropInfo = {
+      counter: 0,
+      interval: 1000,
+      lastTime: 0,
+    }
 
 
     this.updateScore();
@@ -156,11 +161,8 @@ class Tetris extends Game {
     this.next.draw(this.player.matrix[(this.player.currMatrix + 1) % 2]);
   }
 
-  playerMove(dir) {
-    this.player.pos.x += dir;
-    if (this.collide()) {
-      this.player.pos.x -= dir;
-    }
+  playerMove(val) {
+    super.playerMove("x", val);
   }
 
   playerReset() {

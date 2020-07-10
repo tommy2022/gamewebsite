@@ -6,11 +6,7 @@ class Game {
     this.player = player; //includes pos, matrix (of the player), score
     this.arena = this.createMatrix(this.width / scaler,
                                    this.height / scaler);
-    this.dropInfo = {
-      counter: 0,
-      interval: 1000,
-      lastTime: 0,
-    }
+
     this.gameover = false;
   }
 
@@ -74,6 +70,21 @@ class Game {
         }
       });
     });
+  }
+
+  playerMove(dir, val) {
+    if (dir == "x") {
+      this.player.pos.x += val;
+      if (this.collide()) {
+        this.player.pos.x -= val;
+      }
+    }
+    else {
+      this.player.pos.y += val;
+      if (this.collide()) {
+        this.player.pos.y -= val;
+      }
+    }
   }
 
   set_gameover() {
