@@ -1,9 +1,14 @@
 canvas {
-    border: solid .1em black;
     width: 50vmin;
-    /*position: absolute;*/
+    position: absolute;
 }
 
 #fore {
     margin-top: 5.56vmin;
+    border: solid .1em white;
+    background-color: transparent;
+    z-index: 2;
+}
+#back {
+    z-index: 1;
 }

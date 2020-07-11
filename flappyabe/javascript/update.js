@@ -104,7 +104,7 @@ function menu_display() {
   ctx.stroke();
 
   ctx.fillStyle = "white";
-  ctx.font = 'bold 3.5vmin "Courier New", Courier, monospace';
+  ctx.font = 'bold 22px "Courier New", Courier, monospace';
   ctx.fillText("Single player", 85, 470);
   ctx.fillText("Double player", 360, 470);
 
