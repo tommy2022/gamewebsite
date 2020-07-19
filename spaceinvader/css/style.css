@@ -1,11 +1,11 @@
 canvas {
-    width: 50vmin;
+    width: 70vmin;
     position: absolute;
 }
 
 #fore {
-    margin-top: 5.56vmin;
-    border: solid .1em white;
+    margin-top: 7.5vmin;
+    border: solid .1em black;
     background-color: transparent;
     z-index: 2;
 }

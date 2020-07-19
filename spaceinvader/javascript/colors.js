@@ -1,0 +1,12 @@
+const colors = {
+            //bullets have same number but negative as player, enemy
+            
+            //player index = 1
+            1: "#ABE1FA",
+            
+            //enemy index > 10
+            
+            5: "#00FFFF",
+            6: "#00FF00",
+            7: "#FF4500",
+};

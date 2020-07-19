@@ -1,81 +1,124 @@
 class SpaceInvader extends Game {
-    constructor(ctx, canvas, ctx_back, canvas_back, player) {
-        super(ctx, canvas.width, canvas.height, player);
-        this.background = new Background(ctx_back, canvas_back, player);
-        this.player.pos.x = (canvas.width - player.matrix[0].length)/ 2 | 0;
-        this.player.pos.y = this.height - this.player.matrix.length * 1.5 | 0;
+  constructor(fore_ctx, fore_canvas, back_ctx, back_canvas, player, color) {
+    super(fore_ctx, fore_canvas.width, fore_canvas.height, player);
+    const fore_dim = {
+      width: fore_canvas.width,
+      height: fore_canvas.height,
     }
+    const back_dim = {
+      width: back_canvas.width,
+      height: back_canvas.height,
+    }
+    const p_arena = super.createMatrix(fore_dim.width, fore_dim.height);
+    const e_arena = super.createMatrix(fore_dim.width, fore_dim.height);
     
-    drawBlank() {
-        this.context.clearRect(0, 0, this.width, this.height);
-    }
+    this.foreground = new Foreground(fore_ctx, fore_dim, p_arena, e_arena);
+    //this.background = new Background(back_ctx, canvas_back, this.player);
+    this.player.pos.x = (fore_canvas.width - player.matrix[0].length)/ 2 | 0;
+    this.player.pos.y = this.height - this.player.matrix.length * 1.5 | 0;
+    this.player_arena = super.createMatrix(fore_canvas.width, fore_canvas.height);
     
-    update_frame() {
-        this.drawBlank();
-        super.drawMatrix(this.player.matrix, this.player.pos, this.player.color);
-    }
-}
-
-class Background {
-    constructor(ctx, canvas, player) {
-        this.width = canvas.width;
-        this.height = canvas.height;
-        this.context = ctx;
-        this.background_color = "#0b0b31";
-        this.player_matrix = player.matrix;
-        this.player_color = player.color;
-        this.score = player.score;
-        
-        this.fill_background();
-        this.life = 3;
-        this.life_x = this.width / 50;
-        this.life_height = this.height * 0.98;
-        
-        this.display_life();
-        this.update_score();
-    }
-    display_life() {
-        const gap = this.player_matrix.length + 10;;
-        this.context.fillStyle = "white";
-        this.context.font = "bold 14px Arial";
-        this.context.fillText("Lives", this.life_x, this.life_height);
-        for (let i = 0; i < this.life; i++) {
-            this.drawMatrix(gap * i + 45)
-        }
-    }
     
-    damage() {
-        this.life--;
-        this.display_life();
+    this.item_duration = 500;
+    this.bullets = new Array();
+  }
+  
+  damage_taken() {
+    if(this.background.damage()) {
+      super.set_gameover();
     }
-    
-    enemy_kill(score) {
-        if (this.score != score) {
-            this.score == score;
-            this.update_score();
-        }
-    }
-    
-     drawMatrix(x_pos) {
-        this.player_matrix.forEach((row, y) => {
-          row.forEach((value, x) => {
-            if (value != 0) {
-              this.context.fillStyle = this.player_color;
-              this.context.fillRect(x + x_pos,
-                                y + this.life_height - this.player_matrix.length,
-                                 1, 1);
+  }
+  
+  draw() {
+    this.drawBlank();
+    this.drawPlayer();
+    //this.drawEnemies();
+    //this.drawBullets();
+    this.drawArena();
+  }
+  
+  drawArena() {
+    //does not draw player
+    this.arena.forEach((row, y) => {
+      row.forEach((value, x) => {
+        if (value != 0) {
+          this.context.fillStyle = this.colors[value];
+          this.context.fillRect(x, y, 1, 1);
         }
       });
     });
+    }
+  
+  drawPlayer() {
+    super.drawMatrix(this.player_arena, this.player.pos, this.player.color);
+  }
+  
+  drawBlank() {
+    this.context.clearRect(0, 0, this.width, this.height);
+  }
+  
+  update_frame() {
+    this.update_player();
+    this.draw();
+  }
+  
+  update_player() {
+    this.player_arena.forEach((row) => {
+      row.fill(0);
+    });
+    this.update_bullet();
+  }
+  
+  update_bullet() {
+    this.bullets.forEach((bullet) => {
+      bullet.update();
+    });
+    //if bullet collide with enemy enemy dies
+  }
+  
+  shoot() {
+    debugger;
+    this.bullets.push(new Bullet(this.player_arena, this.context, 
+                              this.items.effects, this.player));
+  }
+}
+
+class Bullet {
+  constructor(context, items_effects, arena, player) {
+    this.context = context;
+    this.effects = items_effects;
+    this.arena = arena;
+    this.width = 4;
+    this.height = 16;
+    if (this.effects.large) {
+      this.width *= 2;
+      this.height *= 2;
+    }
+    this.x = [];
+    this.x.push(player.pos.x + player.matrix[0].length - this.size / 2);
+    if (this.effects.double) {
+      const shifter = 8;
+      this.x[0] -= shifter;
+      this.x.push(this.x[0] + 2 * shifter);
+    }
+    this.y = player.pos.y - 1;
+    
+    this.bulletspd = 3;
+    
+  }
+  
+  update() {
+    this.y -= this.bulletspd;
+    this.merge();
   }
     
-    fill_background() {
-        this.context.fillStyle = this.background_color;
-        this.context.fillRect(0, 0, this.width, this.height);
+  merge(color_num = 10) {
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
+        this.x.forEach((val) => {
+                  this.arena[i + this.y][j + val] = color_num; //bullet number
+        });
+      }
     }
-    
-    update_score() {
-        this.context.fillStyle = "white";
-        this.context.fillText("SCORE, 50, 50");
-    }
+  }
 }

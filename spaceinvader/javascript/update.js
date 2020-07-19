@@ -26,7 +26,7 @@ start();
 var game;
 
 function start() {
-  game = new SpaceInvader(ctx_fore, canvas_fore, ctx_back, canvas_back, player);
+  game = new SpaceInvader(ctx_fore, canvas_fore, ctx_back, canvas_back, player, colors);
   update(); 
 }
 
@@ -43,10 +43,11 @@ function update(time = 0){
 }
 
 $(window).keydown(function(e) {
-  debugger;
   if (e.keyCode == 37) {
     game.playerMove('x', -5);
   } else if (e.keyCode == 39) {
     game.playerMove('x', 5);
+  } else if (e.keyCode == 32) {
+    game.shoot();
   }
 });
