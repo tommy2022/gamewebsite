@@ -35,11 +35,9 @@ class Background {
     this.display_life();
   }
   
-  enemy_kill(score) {
-    if (this.score.val != score) {
-      this.score.val = score;
+  score_increment(score) {
+      this.score.val += score;
       this.update_screen();
-    }
   }
   
    drawMatrix(x_pos) {
