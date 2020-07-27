@@ -52,6 +52,25 @@ class Spaceship {
         });
     }
     
+    enemy_hit(x_pos, y_pos) {
+        for (let i = 0; i < this.bullets.length; i++) {
+            if (y_pos >= this.bullets[i].y && 
+                y_pos < this.bullets[i].y + Bullet.height) {
+                if (this.bullets[i].x.length == 1) {
+                    this.bullets[i].x.shift();
+                }
+                else {
+                    for (let j = 0; j < this.bullets[i].x.length; j++) {
+                        if (x_pos >= x[j] && x_pos < x[j] + this.bullets[i].width) {
+                            this.bullets[i].x.splice(j, 1);
+                        }
+                    }
+                }
+                return;
+            }
+        }
+    }
+    
     movePos(dir, val) {
         if (dir == "x") {
             this.pos.x += val;
@@ -74,7 +93,9 @@ class Spaceship {
     
     update_bullet() {
         this.bullets.forEach((bullet) => {
-            bullet.update();
+            if (bullet) {
+                bullet.update();
+            }
         });
     }
 

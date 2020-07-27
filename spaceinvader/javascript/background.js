@@ -32,7 +32,11 @@ class Background {
   
   damage() {
     this.life.val--;
+    if (this.life.val == 0) {
+      return true;
+    }
     this.display_life();
+    return false;
   }
   
   score_increment(score) {

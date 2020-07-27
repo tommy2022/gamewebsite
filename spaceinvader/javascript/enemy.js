@@ -19,7 +19,6 @@ class Enemy {
     }
     
     defeated(x_pos, y_pos) {
-        debugger;
         const row = y_pos / Aliens.blockDim | 0;
         const col = (x_pos - this.start) / Aliens.blockDim | 0;
         const score_gain = this.enemy_army[row][col].get_score();
@@ -56,11 +55,13 @@ class Enemy {
     }
     
     player_hit(x_pos, y_pos, number) {
+        let boolean = true;
         this.enemy_army.forEach((row) => {
             row.forEach((enemy) => {
-                if (enemy && enemy.bullet && enemy.color_num == number) {
+                if (boolean && enemy && enemy.bullet && enemy.color_num == number) {
                     if(enemy.check_bullet_pos(x_pos, y_pos)) {
                         enemy.bullet = null;
+                        boolean = false;
                     }
                 }
             });
@@ -68,10 +69,10 @@ class Enemy {
     }
     
     update(time) {
-        if (this.counter != 2) {
+        if (this.counter != 3) {
             this.counter++;
         }
-        else if (this.counter == 2) {
+        else if (this.counter == 3) {
             this.counter = 0;
             this.start += this.dir;
             if (this.start == 0 || this.start == this.turn_x) {
@@ -87,7 +88,6 @@ class Enemy {
                }
            }); 
         });
-
     }
 }
 
@@ -176,15 +176,18 @@ class Aliens {
     }
     
     check_bullet_pos(x_pos, y_pos) {
+        let rtn = false;
         if (!this.bullet) return;
         if (y_pos >= this.bullet.y && y_pos < this.bullet.y + Bullet.height) {
-            const bullet_x = this.bullet.get_x;
+            const bullet_x = this.bullet.get_x();
             bullet_x.forEach((x) => {
-               if (x_pos >= x && x_pos < x + this.bullet.width)  {
-                   return true;
+               if (!rtn && x_pos >= x && x_pos < x + this.bullet.width)  {
+                   debugger;
+                   rtn = true;
                }
             });
         }
+        return rtn;
     }
 
 }
@@ -215,7 +218,7 @@ class Octopus extends Aliens {
 
 class Crab extends Aliens {
     constructor (arena, time) {
-        super(20, 6, 10000, arena, time);
+        super(20, 6, 6000, arena, time);
     
         const crab = [
             [0, 0, 6, 0, 0, 0],
@@ -243,7 +246,7 @@ class Crab extends Aliens {
 
 class Squid extends Aliens {
     constructor (arena, time) {
-        super(30, 7, 20000, arena, time);
+        super(30, 7, 10000, arena, time);
         
         const squid = [
             [0, 0, 0, 7],

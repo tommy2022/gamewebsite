@@ -51,8 +51,8 @@ class Bullet {
   }
   
   update() {
-    this.draw();
     this.y += this.dir;
+    this.draw();
     if (this.x.length > 2) {
       //if diagnal
       this.update_diagnal();

@@ -34,6 +34,7 @@ class Foreground {
       if (p_val < 0 && e_val < 0) return;
       else if (p_val < 0 && e_val > 0) {
         this.rtn.score += this.enemy.defeated(j, i);
+        this.spaceship.enemy_hit(j, i);
         return true;
       }
       else if (p_val > 0 && e_val > 0) {
@@ -43,7 +44,7 @@ class Foreground {
       }
       else if (p_val > 0 && e_val < 0) {
         this.rtn.life = 1;
-        this.player_hit(j, i, -e_val);
+        this.enemy.player_hit(j, i, -e_val);
         return true;
       }
     }

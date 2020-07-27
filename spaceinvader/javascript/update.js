@@ -43,11 +43,7 @@ function update(time = 0){
 $(window).keydown(function(e) {
   if (e.keyCode == 37) {
     game.playerMove("x", -7);
-  } else if (e.keyCode == 38) {
-    game.playerMove("y", -4);
   } else if (e.keyCode == 39) {
     game.playerMove("x", 7);
-  } else if (e.keyCode == 40) {
-    game.playerMove("y", 4);
   }
 });

@@ -131,7 +131,7 @@ function gameover_screen() {
   $("#canvas").css("background-blend-mode", "normal");
   const score = "Your score: " + flappyabe.getScore();
   ctx.fillStyle = "white";
-  ctx.font = 'bold 7vmin Arial';
+  ctx.font = 'bold 45px Arial';
   ctx.fillText(score, 160 , 100);
   menu_display();
 }

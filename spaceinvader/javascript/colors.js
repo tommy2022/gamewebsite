@@ -4,7 +4,7 @@ const colors = {
             //player index = 1
             1: "#ABE1FA",
             
-            //enemy index > 10
+            //enemy index >= 5
             
             5: "#00FFFF",
             6: "#00FF00",

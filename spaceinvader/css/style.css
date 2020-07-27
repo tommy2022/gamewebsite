@@ -5,7 +5,6 @@ canvas {
 
 #fore {
     margin-top: 7.5vmin;
-    border: solid .1em black;
     background-color: transparent;
     z-index: 2;
 }
