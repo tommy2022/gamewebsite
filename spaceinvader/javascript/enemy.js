@@ -4,6 +4,9 @@ class Enemy {
         this.dir = 1;
         this.start = 0;
         this.counter = 0;
+        this.move_interval = 3;
+        this.accelerate_interval = 1800000;
+        this.items = [];
 
         
         const margin_scale = 0.7;
@@ -23,6 +26,9 @@ class Enemy {
         const col = (x_pos - this.start) / Aliens.blockDim | 0;
         const score_gain = this.enemy_army[row][col].get_score();
         this.enemy_army[row][col] = null;
+        if (Math.random() < Items.chance) {
+            this.items.push(new Items(x_pos, y_pos, this.arena));
+        }
         return score_gain;
     }
     
@@ -54,6 +60,16 @@ class Enemy {
         }
     }
     
+    get_item(x_pos, y_pos) {
+        for (let i = 0; i < this.items.length; i++) {
+            if (this.items[i].check_item(x_pos, y_pos)) {
+                const effect = this.items[i].item_name;
+               this.items.splice(i, 1);
+               return effect;
+            }
+        }
+    }
+    
     player_hit(x_pos, y_pos, number) {
         let boolean = true;
         this.enemy_army.forEach((row) => {
@@ -69,10 +85,14 @@ class Enemy {
     }
     
     update(time) {
-        if (this.counter != 3) {
+        if (time > this.accelerate_interval && this.move_interval > 1) {
+            this.move_interval--;
+            this.accelerate_interval *= 2;
+        }
+        if (this.counter < this.move_interval) {
             this.counter++;
         }
-        else if (this.counter == 3) {
+        else if (this.counter >= this.move_interval) {
             this.counter = 0;
             this.start += this.dir;
             if (this.start == 0 || this.start == this.turn_x) {
@@ -87,6 +107,17 @@ class Enemy {
                         x * Aliens.blockDim + this.start,  y * Aliens.blockDim);
                }
            }); 
+        });
+        this.update_items();
+    }
+    
+    update_items() {
+        this.items.forEach((item, index) => {
+            if (item != null) {
+                if (!item.update()) {
+                   this.items.splice(index, 1);
+                }
+            }
         });
     }
 }
@@ -182,7 +213,6 @@ class Aliens {
             const bullet_x = this.bullet.get_x();
             bullet_x.forEach((x) => {
                if (!rtn && x_pos >= x && x_pos < x + this.bullet.width)  {
-                   debugger;
                    rtn = true;
                }
             });
@@ -246,7 +276,7 @@ class Crab extends Aliens {
 
 class Squid extends Aliens {
     constructor (arena, time) {
-        super(30, 7, 10000, arena, time);
+        super(30, 7, 6000, arena, time);
         
         const squid = [
             [0, 0, 0, 7],

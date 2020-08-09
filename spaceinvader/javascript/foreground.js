@@ -6,19 +6,17 @@ class Foreground {
         
         this.player_arena = player_arena;
         this.enemy_arena = enemy_arena;
-        
         this.counter = 0;
         this.spaceship = new Spaceship(this.player_arena, fore_dim, player_matrix);
         this.enemy = new Enemy(this.enemy_arena);
         this.rtn = {
           life: 0,
           score: 0,
-        }
+        };
     }
 
     collide() {
       this.reset_rtn();
-
       for (let i = 0; i < this.player_arena.length; i++) {
         for (let j = 0; j < this.player_arena[0].length; j++) {
           if (this.player_arena[i][j] != 0 && this.enemy_arena[i][j] != 0) {
@@ -43,8 +41,14 @@ class Foreground {
         return true;
       }
       else if (p_val > 0 && e_val < 0) {
-        this.rtn.life = 1;
-        this.enemy.player_hit(j, i, -e_val);
+        if (e_val <= -10) {
+          const effect = this.enemy.get_item(j, i);
+          this.spaceship.item_collected(effect);
+        }
+        else {
+          this.rtn.life = 1;
+          this.enemy.player_hit(j, i, -e_val);
+        }
         return true;
       }
     }

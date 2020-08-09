@@ -33,11 +33,13 @@ function update(time = 0){
   if (!game.get_gameover()) {
     requestAnimationFrame(update);
   }
-  /*
   else {
-    gameover;
+    gameover_screen();
   }
-  */
+}
+
+function gameover_screen() {
+  
 }
 
 $(window).keydown(function(e) {

@@ -42,6 +42,27 @@ class Spaceship {
         }
     }
     
+    check_items() {
+        if (this.items.effects.double && this.items.time.double >= 0) {
+            this.items.time.double -= this.time;
+            if (this.items.time.double < 0) {
+                this.items.effects.double = false;
+            }
+        }
+        if (this.items.effects.diagnal && this.items.time.diagnal >= 0) {
+            this.items.time.diagnal -= this.time;
+            if (this.items.time.diagnal < 0) {
+                this.items.effects.diagnal = false;
+            }
+        }
+        if (this.items.effects.large && this.items.time.large >= 0) {
+            this.items.time.large -= this.time;
+            if (this.items.time.large < 0) {
+                this.items.effects.large = false;
+            }
+        }
+    }
+    
     draw() {
         this.matrix.forEach((row, y) => {
            row.forEach((value, x) => {
@@ -61,13 +82,29 @@ class Spaceship {
                 }
                 else {
                     for (let j = 0; j < this.bullets[i].x.length; j++) {
-                        if (x_pos >= x[j] && x_pos < x[j] + this.bullets[i].width) {
+                        if (x_pos >=  this.bullets[i].x[j] 
+                        && x_pos <  this.bullets[i].x[j] + this.bullets[i].width) {
                             this.bullets[i].x.splice(j, 1);
                         }
                     }
                 }
                 return;
             }
+        }
+    }
+    
+    item_collected(effect_name) {
+        if (effect_name == "double") {
+            this.items.effects.double = true;
+            this.items.time.double = Spaceship.item_interval;
+        }
+        else if (effect_name == "diagnal") {
+            this.items.effects.diagnal = true;
+            this.items.time.diagnal = Spaceship.item_interval;
+        }
+        else if (effect_name == "large") {
+            this.items.effects.large = true;
+            this.items.time.large = Spaceship.item_interval;
         }
     }
     
@@ -104,6 +141,7 @@ class Spaceship {
         this.time += (time - this.lastTime);
         this.lastTime = time;
         if (this.time > this.attack_interval) {
+            this.check_items();
             this.time = 0;
             const position = {
                 x: this.pos.x + this.matrix[0].length / 2 | 0,
@@ -114,3 +152,5 @@ class Spaceship {
         }
     }
 }
+
+Spaceship.item_interval = 10000;

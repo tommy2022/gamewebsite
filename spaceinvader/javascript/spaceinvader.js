@@ -20,6 +20,7 @@ class SpaceInvader extends Game {
   
   damage_taken() {
     if(this.background.damage()) {
+      debugger;
       super.set_gameover();
     }
   }
