@@ -21,6 +21,7 @@ class Background {
     };
     this.update_screen();
   }
+  
   display_life() {
     this.context.fillStyle = "white";
     this.context.font = 'bold 14px "Courier New", Courier, monospace';
@@ -64,6 +65,10 @@ class Background {
   
   getlife() {
     return this.life.val;
+  }
+  
+  getScore() {
+    return this.score.val;
   }
   
   update_screen() {

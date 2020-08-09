@@ -1,5 +1,5 @@
 class SpaceInvader extends Game {
-  constructor(fore_ctx, fore_canvas, back_ctx, back_canvas, player, color) {
+  constructor(fore_ctx, fore_canvas, back_ctx, back_canvas, player) {
     super(fore_ctx, fore_canvas.width, fore_canvas.height, player);
     const fore_dim = {
       width: fore_canvas.width,
@@ -14,13 +14,10 @@ class SpaceInvader extends Game {
     
     this.foreground = new Foreground(fore_ctx, fore_dim, p_arena, e_arena, this.player.matrix);
     this.background = new Background(back_ctx, back_canvas, this.player.matrix);
-    
-    this.item_duration = 500;
   }
   
   damage_taken() {
     if(this.background.damage()) {
-      debugger;
       super.set_gameover();
     }
   }
@@ -45,5 +42,9 @@ class SpaceInvader extends Game {
   
   shoot() {
     this.foreground.spaceship.shoot();
+  }
+  
+  getScore() {
+    return this.background.getScore();
   }
 }

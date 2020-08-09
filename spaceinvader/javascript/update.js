@@ -24,11 +24,12 @@ start();
 var game;
 
 function start() {
-  game = new SpaceInvader(ctx_fore, canvas_fore, ctx_back, canvas_back, player, colors);
+  ctx_fore.clearRect(0, 0, canvas_fore.width, canvas_fore.height);
+  game = new SpaceInvader(ctx_fore, canvas_fore, ctx_back, canvas_back, player);
   update(); 
 }
 
-function update(time = 0){
+function update(time = 0) {
   game.update_frame(time);
   if (!game.get_gameover()) {
     requestAnimationFrame(update);
@@ -39,7 +40,21 @@ function update(time = 0){
 }
 
 function gameover_screen() {
+  ctx_fore.clearRect(0, 0, canvas_fore.width, canvas_fore.height);
+  ctx_back.fillStyle = "#0b0b31";
+  ctx_back.fillRect(0, 0, canvas_back.width, canvas_back.height);
+  const score = "Your score: " + game.getScore();
   
+  ctx_fore.fillStyle = "#8B0000";
+  ctx_fore.font = 'bold 25px "Courier New", Courier, monospace';
+  ctx_fore.fillText("Game Over", 85, 40);
+  
+  ctx_fore.fillStyle = "white";
+  ctx_fore.font = 'bold 15px Arial';
+  ctx_fore.fillText(score, 95, 90);
+  
+  ctx_fore.font = '10px';
+  ctx_fore.fillText("Press space to play again", 60, 170);
 }
 
 $(window).keydown(function(e) {
@@ -47,5 +62,7 @@ $(window).keydown(function(e) {
     game.playerMove("x", -7);
   } else if (e.keyCode == 39) {
     game.playerMove("x", 7);
+  } if (e.keyCode == 32 && game.get_gameover()) {
+    start();
   }
 });
