@@ -1,7 +1,8 @@
 <?php
     try {
-      $dsn = 'mysql:dbname=practice;host=127.0.0.1;charset=utf8';
-      $db = new PDO($dsn, 'root', '');
+      $url = parse_url(getenv('DATABASE_URL'));
+      $dsn = sprintf('pgsql:host=%s;dbname=%s;charset=utf8', $url['host'], substr($url['path'], 1));
+      $db = new PDO($dsn, $url['user'], $url['pass']);
     }
     catch (PDOException $e) {
       echo $e->getMessage();
