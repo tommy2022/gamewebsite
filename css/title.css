@@ -1,0 +1,10 @@
+#title {
+    font-size: 2em;
+    margin-left: 5vw;
+    margin-right: 15vw;
+}
+
+#login_form {
+  display: inline-block;
+  margin-left: 3vw;
+}

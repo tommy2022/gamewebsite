@@ -3,7 +3,6 @@ body {
   background: #202028;
   color: #fff;
   font-family: sans-serif, Arial;
-  font-size: 3.5vh;
   text-align: center;
 }
 
@@ -13,7 +12,7 @@ p {
 
 canvas {
   border: solid .1em #fff;
-  height: 90vmin;
+  height: 80vh;
 }
 
 .result {
@@ -39,7 +38,7 @@ canvas {
   z-index: 2;
   position: absolute;
   top: 15vmin;
-  left: 15vmin;
+  left: 15vw;
 }
 
 @media screen and (max-width: 1000px) {

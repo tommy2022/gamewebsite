@@ -1,4 +1,4 @@
-function login() {
-    var email = document.getElementById("email").value;
-    var pwd = document.getElementById("password").value;
+if (logged_in) {
+  document.getElementById("login_link").value = "Log out";
+  document.getElementById("login_form").action = "../php/logout.php";
 }

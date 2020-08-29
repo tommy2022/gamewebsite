@@ -10,11 +10,10 @@
     <body>
         <div id="header">
             <span id="title">懐かしのゲームサイト</span>
-            <a href = "index.html" aria-label = "Home" class='home'><i class="fas fa-home"></i> </a>
+            <a href = "../index.php" aria-label = "Home" class='home'><i class="fas fa-home"></i> </a>
         </div>
         <hr>
         <p> Account creation successful! </p>
-        <a href="php/login.php">Go to login page</a>
+        <a href="login.php">Go back to where you left from</a>
     </body>
 </html>
-

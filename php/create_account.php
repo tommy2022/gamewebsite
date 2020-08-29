@@ -1,23 +1,24 @@
-<?php 
+<?php
     session_start();
-    
+    $error = NULL;
+    $duplicate = false;
+
     if (!empty($_POST)) {
-        $error = NULL;
         if ($_POST["password"] != $_POST["confirm"]) {
             $error['confirm'] = 1;
         }
-        
+
         if (empty($error)) {
-            echo "Hello";
             require('dbconnect.php');
-            $statement = $db->prepare('INSERT INTO users SET email=?, password=?');
-            $ret = $statement->execute(array($_POST["email"], sha1($_POST["password"])));
+            $statement = $db->prepare('INSERT INTO users SET email=?, username=?, password=?');
+            $ret = $statement->execute(array($_POST["email"], $_POST['username'], sha1($_POST["password"])));
             if ($ret) {
-                header('Location: ../account_successful.html');
-                exit();
+              $_SESSION['username'] = $_POST["username"];
+              header('Location: account_successful.php');
+              exit();
             }
             else {
-                echo "failure";
+                $duplicate = true;
             }
         }
     }
@@ -41,16 +42,21 @@
         <h3> Create new account </h3>
         <div id="login">
             <div>
-                <p id="message" style="color: red"> 
-                    <?php if ($error["confirm"] == 1) : ?>
+                <p id="message" style="color: red">
+                    <?php if (!empty($error)) : ?>
                     The password and confirmation password do not match.
+                    <?php endif; ?>
+                    <?php if ($duplicate) : ?>
+                      This email address is already used
                     <?php endif; ?>
                 </p>
                 <form name="login_info" action="" method="post">
-                <p>email</p>
-                <input id="email" type="email" name="email" required 
-                value="<?php echo htmlspecialchars($_POST['email'], ENT_QUOTES); ?>" >
-                <p>password</p>
+                <p>Email</p>
+                <input id="email" type="email" name="email" required
+                value="<?php if (!empty($_POST)) {echo htmlspecialchars($_POST['email'], ENT_QUOTES);} ?>" >
+                <p>Username</p>
+                <input id="username" type="username" name="username" required>
+                <p>Password</p>
                 <input id="password" type="password" name="password" required>
                 <p>Confirm password</p>
                 <input id="confirm" type="password" name="confirm" required>
@@ -60,4 +66,3 @@
         </div>
     </body>
 </html>
-

@@ -26,7 +26,7 @@ var game;
 function start() {
   ctx_fore.clearRect(0, 0, canvas_fore.width, canvas_fore.height);
   game = new SpaceInvader(ctx_fore, canvas_fore, ctx_back, canvas_back, player);
-  update(); 
+  update();
 }
 
 function update(time = 0) {
@@ -35,6 +35,9 @@ function update(time = 0) {
     requestAnimationFrame(update);
   }
   else {
+    if (logged_in) {
+      set_score(game.getScore(), "SI", username);
+    }
     gameover_screen();
   }
 }
@@ -44,15 +47,15 @@ function gameover_screen() {
   ctx_back.fillStyle = "#0b0b31";
   ctx_back.fillRect(0, 0, canvas_back.width, canvas_back.height);
   const score = "Your score: " + game.getScore();
-  
+
   ctx_fore.fillStyle = "#8B0000";
   ctx_fore.font = 'bold 25px "Courier New", Courier, monospace';
   ctx_fore.fillText("Game Over", 85, 40);
-  
+
   ctx_fore.fillStyle = "white";
   ctx_fore.font = 'bold 15px Arial';
   ctx_fore.fillText(score, 95, 90);
-  
+
   ctx_fore.font = '10px';
   ctx_fore.fillText("Press space to play again", 60, 170);
 }

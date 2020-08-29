@@ -1,6 +1,6 @@
-<?php 
+<?php
     try {
-      $dsn = 'mysql:dbname=practice;host=localhost;charset=utf8';
+      $dsn = 'mysql:dbname=practice;host=127.0.0.1;charset=utf8';
       $db = new PDO($dsn, 'root', '');
     }
     catch (PDOException $e) {

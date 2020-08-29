@@ -3,22 +3,21 @@ canvas {
     position: absolute;
 }
 
-div {
-    margin-left: 40vw;
-}
-
 #fore {
-    margin-top: 17.5vmin;
-    margin-left: 10vmin;
+    margin-top: 7.5vmin;
+    margin-left: 5vmin;
     background-color: transparent;
-    z-index: 2;
+    z-index: 3;
 }
 #back {
-    margin-top: 10vmin;
-    margin-left: 10vmin;
-    z-index: 1;
+    margin-left: 5vmin;
+    z-index: 2;
 }
 
-#spaceinvader, #login {
-    display: inline-block;
+#result_info {
+  border: solid 2px black;
+  position: absolute;
+  z-index: 1;
+  margin-left: 80vmin;
+  width: 50vmin;
 }
