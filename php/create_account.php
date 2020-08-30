@@ -39,7 +39,7 @@
     <body>
         <div id="header">
             <span id="title">懐かしのゲームサイト</span>
-            <a href = "../index.php" aria-label = "Home" class='home'><i class="fas fa-home"></i> </a>
+            <a href = "../index.<?php  ?>" aria-label = "Home" class='home'><i class="fas fa-home"></i> </a>
         </div>
         <hr>
         <h3> Create new account </h3>

@@ -2,6 +2,10 @@
   require('dbconnect.php');
 
   session_start();
+  $check = $db->query("SELECT * FROM users");
+  while ($stm = $check->fetch()) {
+    echo $stm['email'];
+  }
 
   if(!empty($_SESSION)) {
     move_page();
