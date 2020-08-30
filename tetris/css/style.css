@@ -68,9 +68,10 @@ canvas {
 
 #result_info {
   border: solid 2px white;
+  background-color: black;
   position: absolute;
   z-index: 1;
-  margin-left: 60vw;
+  margin-left: 65vw;
   width: 20vw;
   margin-top: 30vh;
 }
