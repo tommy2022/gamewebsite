@@ -29,7 +29,7 @@ canvas {
   height: 53vmin;
   position: absolute;
   position: absolute;
-  left: 95vmin;
+  margin-left: 95vmin;
   font-size: 2vmin;
   padding: 0 2vw;
   margin-top: 30vh;
