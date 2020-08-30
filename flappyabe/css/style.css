@@ -26,10 +26,10 @@ canvas {
 #instructions {
   border: solid .1em #000000;
   width: 30vmin;
-  height: 55vmin;
+  height: 20vw;
   position: absolute;
   position: absolute;
-  left: 95vmin;
+  margin-left: 95vmin;
   font-size: 2vmin;
   padding: 0 2%;
   margin-top: 30vh;
