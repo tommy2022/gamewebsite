@@ -14,7 +14,8 @@ function get_userrank(game, user) {
   }, "json");
 }
 function get_leaderboard(game, user) {
-  $.post('../php/leaderboard.php', "game=SI", function(data) {
+  let pass_info = "game=" + game;
+  $.post('../php/leaderboard.php', pass_info, function(data) {
     debugger;
     let userfound = false;
     const users = data.split(",");
