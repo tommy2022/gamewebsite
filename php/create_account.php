@@ -9,6 +9,7 @@
         }
 
         if (empty($error)) {
+          echo "bahaha"
             require('dbconnect.php');
             $statement = $db->prepare('INSERT INTO users SET email=?, username=?, password=?');
             $ret = $statement->execute(array($_POST["email"], $_POST['username'], sha1($_POST["password"])));
@@ -18,6 +19,7 @@
               exit();
             }
             else {
+              echo " lalala"
                 $duplicate = true;
             }
         }
