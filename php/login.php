@@ -86,7 +86,5 @@
             <a href="create_account.php">Create one here</a> </p>
       </div>
     </div>
-
-  <script src="../javascript/login.js"></script>
   </body>
 </html>
