@@ -12,7 +12,7 @@
           echo $_POST["email"] . "  "  . $_POST["username"];
 
             require('dbconnect.php');
-            $statement = $db->prepare('INSERT INTO users SET email=?, username=?, password=?');
+            $statement = $db->prepare('INSERT INTO users (email, username, password) VALUES (?, ?, ?)');
             $ret = $statement->execute(array($_POST["email"], $_POST['username'], sha1($_POST["password"])));
             if ($ret) {
               $_SESSION['username'] = $_POST["username"];
