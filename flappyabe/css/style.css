@@ -39,3 +39,11 @@ canvas {
   -o-user-select: none;
   user-select: none;
 }
+
+#result_info {
+  border: solid 2px black;
+  position: absolute;
+  z-index: 1;
+  margin-left: 80vmin;
+  width: 50vmin;
+}
