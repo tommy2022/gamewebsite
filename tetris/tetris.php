@@ -7,6 +7,7 @@
   <meta charset = "utf-8">
   <title>Tetris</title>
   <script src="../javascript/jquery-3.5.1.js"></script>
+  <script src="../javascript/dbconnect.js"></script>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="../css/title.css" />
   <script>
@@ -38,6 +39,47 @@
     <p>Hard Drop: Space </p>
     <p>Swap Block: Enter </p>
   </div>
+  <div id="result_info">
+    <h3 style="text-align: center; line-height: 0.3em;">Leaderboard</h3>
+    <hr />
+    <table width="100%" style="text-align: center;">
+      <tr>
+        <th>  </th>
+        <th> Username </th>
+        <th> Score </th>
+      </tr>
+      <tr id="row1">
+        <td>1</td>
+        <td id="user_1"></td>
+        <td id="score_1"></td>
+      </tr>
+      <tr id="row2">
+        <td>2</td>
+        <td id="user_2"></td>
+        <td id="score_2"></td>
+      </tr>
+      <tr id="row3">
+        <td>3</td>
+        <td id="user_3"></td>
+        <td id="score_3"></td>
+      </tr>
+      <tr id="row4">
+        <td>4</td>
+        <td id="user_4"></td>
+        <td id="score_4"></td>
+      </tr>
+      <tr id="row5">
+        <td>5</td>
+        <td id="user_5"></td>
+        <td id="score_5"></td>
+      </tr>
+      <tr id="row6" style="display: none; font-weight: bold;">
+        <td id="user_rank"></td>
+        <td id="user_6"></td>
+        <td id="score_6"></td>
+      </tr>
+    </table>
+  </div>
   <div id="currscore">Score: <span id="score"></span> </div>
 
   <div class="result">
@@ -49,7 +91,17 @@
   </div>
   <canvas id="tetris" width="240" height="400"></canvas>
   <canvas id="next" width="200" height="200"></canvas>
-
+  
+  <script>
+  let user_score = null;
+  let username = "<?php if(!empty($_SESSION['username'])) echo $_SESSION['username'];?>";
+  if (logged_in) {
+    get_leaderboard("SI", username);
+  }
+  else {
+    $("#result_info").css("display", "none");
+  }
+</script>
   <script src="../javascript/login.js"></script>
   <script src="../javascript/game.js"></script>
   <script src="javascript/tetris.js"></script>

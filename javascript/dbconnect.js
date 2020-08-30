@@ -46,6 +46,7 @@ function set_score(score, game, user) {
     boolean = false;
   }
   if (score > user_score) {
+    user_score = score;
     $.post("../php/setscore.php", {game: game, username: user, score: score, bool: boolean});
     get_leaderboard(game, user);
   }
