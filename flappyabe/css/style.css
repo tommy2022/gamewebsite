@@ -26,12 +26,13 @@ canvas {
 #instructions {
   border: solid .1em #000000;
   width: 30vmin;
-  height: 50vmin;
+  height: 45vmin;
   position: absolute;
   position: absolute;
   left: 95vmin;
   font-size: 2vmin;
   padding: 2%;
+  margin-top: 20vh;
   webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
@@ -44,7 +45,6 @@ canvas {
   border: solid 2px black;
   position: absolute;
   z-index: 1;
-  margin-top:60vh;;
   margin-left: 95vmin;
   width: 20vw;
 }
