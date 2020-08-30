@@ -67,9 +67,9 @@ canvas {
 }
 
 #result_info {
-  border: solid 2px black;
+  border: solid 2px white;
   position: absolute;
   z-index: 1;
-  margin-left: 80vmin;
-  width: 50vmin;
+  margin-left: 70vw;
+  width: 30vw;
 }
