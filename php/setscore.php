@@ -6,7 +6,7 @@ if ($_POST['bool'] == "true") {
 }
 else {
   echo "hello";
-  $query = "INSERT INTO results SET score=?, username=?, game=?, time=now()";
+  $query = "INSERT INTO results (score, username, game, time) VALUES (?, ?, ?, now())";
 }
 $connect = $db->prepare($query);
 $connect->execute(array($_POST['score'], $_POST['username'], $_POST['game']));
