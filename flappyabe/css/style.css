@@ -25,13 +25,13 @@ canvas {
 
 #instructions {
   border: solid .1em #000000;
-  width: 20vw;
+  width: 16vw;
   height: 53vmin;
   position: absolute;
   position: absolute;
   left: 95vmin;
   font-size: 2vmin;
-  padding: 0 2%;
+  padding: 0 2vw;
   margin-top: 30vh;
   webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
