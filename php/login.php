@@ -3,6 +3,9 @@
 
   session_start();
 
+  $check = $db->query("SELECT * FROM users;");
+  echo $check;
+
   if(!empty($_SESSION)) {
     move_page();
   }
