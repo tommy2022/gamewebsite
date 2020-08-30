@@ -70,6 +70,7 @@ canvas {
   border: solid 2px white;
   position: absolute;
   z-index: 1;
-  margin-left: 70vw;
-  width: 30vw;
+  margin-left: 60vw;
+  width: 20vw;
+  margin-top: 30vh;
 }

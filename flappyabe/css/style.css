@@ -44,7 +44,7 @@ canvas {
   border: solid 2px black;
   position: absolute;
   z-index: 1;
-  margin-top:55vmin;
+  margin-top:60vh;;
   margin-left: 95vmin;
   width: 50vmin;
 }
