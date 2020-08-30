@@ -66,6 +66,7 @@ function update(time = 0) {
       requestAnimationFrame(update);
   }
   else {
+    set_score(tetris.getScore(), "TE", username);
     tetris.draw_gameover();
   }
 }

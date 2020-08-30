@@ -91,12 +91,12 @@
   </div>
   <canvas id="tetris" width="240" height="400"></canvas>
   <canvas id="next" width="200" height="200"></canvas>
-  
+
   <script>
   let user_score = null;
   let username = "<?php if(!empty($_SESSION['username'])) echo $_SESSION['username'];?>";
   if (logged_in) {
-    get_leaderboard("SI", username);
+    get_leaderboard("TE", username);
   }
   else {
     $("#result_info").css("display", "none");

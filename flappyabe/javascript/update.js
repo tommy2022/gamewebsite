@@ -150,6 +150,7 @@ function update() {
     requestAnimationFrame(update);
   }
   else {
+      set_score(flappyabe.getScore(), "FA", username);
       gameover_screen();
   }
 }

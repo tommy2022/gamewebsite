@@ -93,7 +93,7 @@
   let user_score = null;
   let username = "<?php if(!empty($_SESSION['username'])) echo $_SESSION['username'];?>";
   if (logged_in) {
-    get_leaderboard("SI", username);
+    get_leaderboard("FA", username);
   }
   else {
     $("#result_info").css("display", "none");
