@@ -36,10 +36,6 @@
  <h4> Space Invader </h4>
  <input type="button" value="spaceinvader page" onclick="location.href='spaceinvader/spaceinvader.php'"></input>
   </div>
-  <div>
- <h4> Sudoku </h4>
- <input type="button" value="sudoku page" onclick="location.href='sudoku/sudoku.php'"></input>
-  </div>
 
   <script>
     if (logged_in) {
