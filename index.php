@@ -14,6 +14,11 @@
       logged_in = true;
     <?php endif; ?>
   </script>
+  <style>
+    .game_cell {
+      display:inline-block;
+    }
+  </style>
 </head>
 <body>
   <div id="header">
@@ -24,17 +29,20 @@
       </form>
       <hr />
   </div>
-<div>
+<div class="game_cell">
  <h4> Tetris </h4>
- <input type="button" value="Tetris page" onclick="location.href='tetris/tetris.php'"></input>
+ <img src="/img/tetris.jpg" height="5vmin" width="5vmin">
+ <input type="button" value="Go to page" onclick="location.href='tetris/tetris.php'"></input>
   </div>
-<div>
+<div class="game_cell">
  <h4> FLappy Abe(s) </h4>
- <input type="button" value="Flappy Abe(s) page" onclick="location.href='flappyabe/flappyabe.php'"></input>
+ <img src="/img/flappyabe.jpg" height="5vmin" width="5vmin">
+ <input type="button" value="Go to page" onclick="location.href='flappyabe/flappyabe.php'"></input>
   </div>
-  <div>
+  <div class="game_cell">
  <h4> Space Invader </h4>
- <input type="button" value="spaceinvader page" onclick="location.href='spaceinvader/spaceinvader.php'"></input>
+ <img src="/img/spaceinvader.jpg" height="5vmin" width="5vmin">
+ <input type="button" value="Go to page" onclick="location.href='spaceinvader/spaceinvader.php'"></input>
   </div>
 
   <script>
