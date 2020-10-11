@@ -32,12 +32,12 @@
   </div>
 <div class="game_cell">
  <h3> Tetris </h3>
- <img src="/img/tetris.jpg" height="25%" width="25%">
+ <img src="/img/tetris.jpg" height="25%" width="25%"><br />
  <input type="button" value="Go to page" onclick="location.href='tetris/tetris.php'"></input>
   </div>
 <div class="game_cell">
  <h3> FLappy Abe(s) </h3>
- <img src="/img/flappyabe.jpg" height="25%" width="25%">
+ <img src="/img/flappyabe.jpg" height="25%" width="25%"> <br />
  <input type="button" value="Go to page" onclick="location.href='flappyabe/flappyabe.php'"></input>
   </div>
   <div class="game_cell">
